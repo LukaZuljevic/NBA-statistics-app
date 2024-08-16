@@ -1,7 +1,11 @@
 @import "./styles/header.css";
 @import "./styles/teamTable.css";
+@import "./styles/leagueInfo.css";
 
 * {
   margin: 0;
   box-sizing: border-box;
+}
+.container{
+  background-color: rgb(226, 226, 226);
 }

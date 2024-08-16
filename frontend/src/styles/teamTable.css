@@ -1,0 +1,36 @@
+.teamTable{
+    background-color: rgb(255, 255, 255);
+    width:50%;
+    margin:10px;
+    border-radius: 8px;
+    padding:10px;
+    padding-top:20px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.teamTable li, .table-info{
+    list-style-type: none;
+    display: flex;
+    justify-content: space-between;
+}   
+.table-info{
+    padding-left:40px;
+}
+
+.table-info h3{
+    width:245px;
+}
+
+.win-lose{
+    display: flex;
+    gap:7px;
+}
+.win-lose-info{
+    display: flex;
+    gap:4px;
+}
+
+.team-name{
+    width:250px;
+    letter-spacing: 1px;
+}

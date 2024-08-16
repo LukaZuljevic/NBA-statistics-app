@@ -16,15 +16,17 @@ client.connect().then(() => console.log("Connected to database"));
 
 app.use(cors());
 
-app.get("/igrac", async (req, res) => {
-  try {
-    const query = await client.query("SELECT * FROM igrac");
-    console.log(query.rows);
-    res.json(query.rows); // Send the data back to the client as JSON
-  } catch (err) {
-    console.error("Error executing query:", err.message);
-    res.status(500).json({ error: "Internal Server Error" });
-  }
+app.get("/momcad", (req, res) => {
+  client.query("SELECT * FROM momcad", (err, results) => {
+    if (err) {
+      console.error("Error executing query", err.stack);
+      //TODO check what returns in case of error
+      res.json("Something is wrong with the database");
+    } else {
+      console.log("Query results are :", results.rows);
+      res.json(results.rows);
+    }
+  });
 });
 
 app.listen(5000, () => {
