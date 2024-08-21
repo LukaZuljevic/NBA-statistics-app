@@ -7,6 +7,8 @@ import axios from "axios";
 
 function App() {
   const [teams, setTeams] = useState([]);
+  const [omjerPobjeda, setOmjerPobjeda] = useState([]);
+ 
 
   // useEffect(() => {
   //   const fetchData = async () => {
@@ -29,11 +31,33 @@ function App() {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      await axios.get("http://localhost:5000/omjerPobjeda").then((response) => {
+        const data = response.data;
+        setOmjerPobjeda(data);
+      });
+    };
+
+    fetchData();
+  }, []);
+
+  const teamsWithResults = teams.map(team => {
+    const result = omjerPobjeda.find(omjer => omjer.team === team.ime);
+  
+    return {
+      ...team,
+      wins: result ? result.wins : 0,  
+      losses: result ? result.losses : 0,
+      draws: result ? result.draws : 0
+    };
+  });
+
   return (
     <div className="container">
       <Header />
       <LeagueInfo />
-      <TeamTable teams={teams} />
+      <TeamTable teamsWithResults={teamsWithResults}  />
     </div>
   );
 }

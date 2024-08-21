@@ -13,6 +13,16 @@
     display: flex;
     justify-content: space-between;
 }   
+
+.teamTable li{
+    margin:10px 0px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+.playedMatches{
+    margin-right: 10px;
+    font-weight: bold;
+}
+
 .table-info{
     padding-left:40px;
 }
@@ -33,4 +43,9 @@
 .team-name{
     width:250px;
     letter-spacing: 1px;
+
+}
+.team-name h3{
+    font-weight: 100;
+    font-size: 16px;
 }

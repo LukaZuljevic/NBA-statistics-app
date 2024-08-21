@@ -1,30 +1,36 @@
-function TeamTable({ teams }) {
+function TeamTable({ teamsWithResults }) {
   return (
     <div className="teamTable">
       <div className="table-info">
         <h3>Teams</h3>
         <div className="win-lose-info">
-              <p>P</p>
-              <p>W</p>
-              <p>L</p>
-            </div>
+          <p className="playedMatches">P</p>
+          <p>W</p>
+          <p>L</p>
+          <p>D</p>
+        </div>
         <p>PTS</p>
       </div>
       <hr></hr>
       <ol>
-        {teams.map((team, index) => (
-          <li key={index}>
-            <div className="team-name">
-              <h3>{team.ime_momcad}</h3>
-            </div>
-            <div className="win-lose">
-              <p>0</p>
-              <p>0</p>
-              <p>0</p>
-            </div>
-            <p>poeni</p>
-          </li>
-        ))}
+        {teamsWithResults.map((team, index) => {
+          const ukupnoUtakmica =
+            parseInt(team.wins) + parseInt(team.losses) + parseInt(team.draws);
+          return (
+            <li key={index}>
+              <div className="team-name">
+                <h3>{team.ime}</h3>
+              </div>
+              <div className="win-lose">
+                <p className="playedMatches">{ukupnoUtakmica}</p>
+                <p>{team.wins}</p>
+                <p>{team.losses}</p>
+                <p>{team.draws}</p>
+              </div>
+              <p>poeni</p>
+            </li>
+          );
+        })}
       </ol>
     </div>
   );
