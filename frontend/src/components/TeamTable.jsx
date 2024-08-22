@@ -1,4 +1,4 @@
-function TeamTable({ teamsWithResults }) {
+function TeamTable({ teamsWithStats }) {
   return (
     <div className="teamTable">
       <div className="table-info">
@@ -13,7 +13,7 @@ function TeamTable({ teamsWithResults }) {
       </div>
       <hr></hr>
       <ol>
-        {teamsWithResults.map((team, index) => {
+        {teamsWithStats.map((team, index) => {
           const ukupnoUtakmica =
             parseInt(team.wins) + parseInt(team.losses) + parseInt(team.draws);
           return (
@@ -27,7 +27,7 @@ function TeamTable({ teamsWithResults }) {
                 <p>{team.losses}</p>
                 <p>{team.draws}</p>
               </div>
-              <p>poeni</p>
+              <p className="team-points">{team.points}</p>
             </li>
           );
         })}

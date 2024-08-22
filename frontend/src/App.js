@@ -8,18 +8,10 @@ import axios from "axios";
 function App() {
   const [teams, setTeams] = useState([]);
   const [omjerPobjeda, setOmjerPobjeda] = useState([]);
- 
+  const [brojPoena, setBrojPoena] = useState([]);
+  const [sezona, setSezona] = useState("22/23");
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     const response = await fetch("/igrac");
-  //     const data = await response.json();
-  //     console.log(data);
-  //     setTeams(data);
-  //   };
-  //   fetchData();
-  // }, []);
-
+  //fetching teams info data
   useEffect(() => {
     const fetchData = async () => {
       await axios.get("http://localhost:5000/momcad").then((response) => {
@@ -31,33 +23,52 @@ function App() {
     fetchData();
   }, []);
 
+  //fetching wins, losses and draws data for each team
   useEffect(() => {
     const fetchData = async () => {
-      await axios.get("http://localhost:5000/omjerPobjeda").then((response) => {
-        const data = response.data;
-        setOmjerPobjeda(data);
-      });
+      await axios
+        .get(`http://localhost:5000/omjerPobjeda${sezona}`)
+        .then((response) => {
+          const data = response.data;
+          setOmjerPobjeda(data);
+        });
     };
 
     fetchData();
-  }, []);
+  }, [sezona]);
 
-  const teamsWithResults = teams.map(team => {
-    const result = omjerPobjeda.find(omjer => omjer.team === team.ime);
-  
+  //fetching points data for each team
+  useEffect(() => {
+    const fetchData = async () => {
+      await axios
+        .get(`http://localhost:5000/brojPoena${sezona}`)
+        .then((response) => {
+          const data = response.data;
+          setBrojPoena(data);
+        });
+    };
+
+    fetchData();
+  }, [sezona]);
+
+  const teamsWithStats = teams.map((team) => {
+    const result = omjerPobjeda.find((omjer) => omjer.team === team.ime);
+    const points = brojPoena.find((poeni) => poeni.team === team.ime);
+
     return {
       ...team,
-      wins: result ? result.wins : 0,  
+      wins: result ? result.wins : 0,
       losses: result ? result.losses : 0,
-      draws: result ? result.draws : 0
+      draws: result ? result.draws : 0,
+      points: points ? points.total_points : 0,
     };
   });
 
   return (
     <div className="container">
       <Header />
-      <LeagueInfo />
-      <TeamTable teamsWithResults={teamsWithResults}  />
+      <LeagueInfo setSezona={setSezona} />
+      <TeamTable teamsWithStats={teamsWithStats} />
     </div>
   );
 }

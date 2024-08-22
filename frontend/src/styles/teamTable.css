@@ -1,51 +1,55 @@
-.teamTable{
-    background-color: rgb(255, 255, 255);
-    width:50%;
-    margin:10px;
-    border-radius: 8px;
-    padding:10px;
-    padding-top:20px;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+.teamTable {
+  background-color: rgb(255, 255, 255);
+  width: 50%;
+  margin: 10px;
+  border-radius: 8px;
+  padding: 10px;
+  padding-top: 20px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.teamTable li, .table-info{
-    list-style-type: none;
-    display: flex;
-    justify-content: space-between;
-}   
-
-.teamTable li{
-    margin:10px 0px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-}
-.playedMatches{
-    margin-right: 10px;
-    font-weight: bold;
+.teamTable li,
+.table-info {
+  list-style-type: none;
+  display: flex;
+  justify-content: space-between;
 }
 
-.table-info{
-    padding-left:40px;
+.teamTable li {
+  margin: 10px 0px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+.playedMatches {
+  margin-right: 10px;
+  font-weight: bold;
 }
 
-.table-info h3{
-    width:245px;
+.table-info {
+  padding-left: 40px;
 }
 
-.win-lose{
-    display: flex;
-    gap:7px;
-}
-.win-lose-info{
-    display: flex;
-    gap:4px;
+.table-info h3 {
+  width: 245px;
 }
 
-.team-name{
-    width:250px;
-    letter-spacing: 1px;
-
+.win-lose {
+  display: flex;
+  gap: 7px;
+  margin-right: 10px;
 }
-.team-name h3{
-    font-weight: 100;
-    font-size: 16px;
+.win-lose-info {
+  display: flex;
+  gap: 4px;
+}
+
+.team-name {
+  width: 250px;
+  letter-spacing: 1px;
+}
+.team-name h3 {
+  font-weight: 100;
+  font-size: 16px;
+}
+.team-points {
+  width: 25px;
 }
