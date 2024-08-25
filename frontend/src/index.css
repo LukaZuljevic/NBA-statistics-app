@@ -1,11 +1,26 @@
 @import "./styles/header.css";
 @import "./styles/teamTable.css";
 @import "./styles/leagueInfo.css";
+@import "./styles/latestMatch.css";
 
 * {
   margin: 0;
+  padding:0;
   box-sizing: border-box;
 }
-.container{
+.container {
   background-color: rgb(226, 226, 226);
+}
+
+.left-half {
+  width: 60%;
+}
+
+.right-half {
+  width: 40%;
+}
+
+.app-components {
+  display: flex;
+  flex-direction: row;
 }

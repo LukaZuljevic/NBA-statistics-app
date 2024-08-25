@@ -1,4 +1,4 @@
-function LeagueInfo({setSezona}) {
+function LeagueInfo({setSeason}) {
   return (
     <div className="league-info">
       <img
@@ -8,7 +8,7 @@ function LeagueInfo({setSezona}) {
       />
       <select
         className="season-select"
-        onChange={(e) => setSezona(e.target.value)}
+        onChange={(e) => setSeason(e.target.value)}
       >
         <option>22/23</option>
         <option>23/24</option>

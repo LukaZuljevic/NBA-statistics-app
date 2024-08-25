@@ -1,15 +1,18 @@
 import Header from "./components/Header";
 import TeamTable from "./components/TeamTable";
 import LeagueInfo from "./components/LeagueInfo";
+import LatestMatch from "./components/LatestMatch";
 import "./index.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
 function App() {
   const [teams, setTeams] = useState([]);
-  const [omjerPobjeda, setOmjerPobjeda] = useState([]);
-  const [brojPoena, setBrojPoena] = useState([]);
-  const [sezona, setSezona] = useState("22/23");
+  const [winLossPercentage, setWinLossPercentage] = useState([]);
+  const [teamPoints, setTeamPoints] = useState([]);
+  const [season, setSeason] = useState("22/23");
+  const [latestMatch, setLatestMatch] = useState([]);
+  const [matches, setMatches] = useState([]);
 
   //fetching teams info data
   useEffect(() => {
@@ -27,33 +30,78 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       await axios
-        .get(`http://localhost:5000/omjerPobjeda${sezona}`)
+        .get(`http://localhost:5000/omjerPobjeda${season}`)
         .then((response) => {
           const data = response.data;
-          setOmjerPobjeda(data);
+          setWinLossPercentage(data);
         });
     };
 
     fetchData();
-  }, [sezona]);
+  }, [season]);
 
   //fetching points data for each team
   useEffect(() => {
     const fetchData = async () => {
       await axios
-        .get(`http://localhost:5000/brojPoena${sezona}`)
+        .get(`http://localhost:5000/brojPoena${season}`)
         .then((response) => {
           const data = response.data;
-          setBrojPoena(data);
+          setTeamPoints(data);
         });
     };
 
     fetchData();
-  }, [sezona]);
+  }, [season]);
+
+  //fetching for all matches that were played
+  useEffect(() => {
+    const fetchData = async () => {
+      await axios.get("http://localhost:5000/utakmice").then((response) => {
+        const data = response.data;
+        setMatches(data);
+      });
+    };
+
+    fetchData();
+  }, []);
+
+  //fetching data for the latest match that was played
+  useEffect(() => {
+    const fetchData = async () => {
+      await axios
+        .get(`http://localhost:5000/zadnjaUtakmica`)
+        .then((response) => {
+          const data = response.data;
+          setLatestMatch(data);
+        });
+    };
+
+    fetchData();
+  }, []);
+
+  const latestMatchTeamsId = matches.filter(
+    (match) => match.id_utakmica === latestMatch[0].id
+  );
+
+  const latestMatchTeams = latestMatchTeamsId.map((team) => {
+    const teamName = teams.find((t) => t.id === team.id_momcad);
+
+    return { ...team, ime: teamName.ime };
+  });
+
+  const latestMatchData = {
+    domacin: latestMatchTeams[0],
+    gost: latestMatchTeams[1],
+    id: latestMatch[0]?.id,
+    sudac: latestMatch[0]?.sudac,
+    rang: latestMatch[0]?.rang,
+    datum: latestMatch[0]?.datum,
+  };
 
   const teamsWithStats = teams.map((team) => {
-    const result = omjerPobjeda.find((omjer) => omjer.team === team.ime);
-    const points = brojPoena.find((poeni) => poeni.team === team.ime);
+    const result = winLossPercentage.find((omjer) => omjer.team === team.ime);
+    const points = teamPoints.find((points) => points.team === team.ime);
 
     return {
       ...team,
@@ -66,9 +114,18 @@ function App() {
 
   return (
     <div className="container">
-      <Header />
-      <LeagueInfo setSezona={setSezona} />
-      <TeamTable teamsWithStats={teamsWithStats} />
+      <header>
+        <Header />
+      </header>
+      <div className="app-components">
+        <div className="left-half">
+          <LeagueInfo setSeason={setSeason} />
+          <TeamTable teamsWithStats={teamsWithStats} />
+        </div>
+        <div className="right-half">
+          <LatestMatch latestMatchData={latestMatchData} />
+        </div>
+      </div>
     </div>
   );
 }

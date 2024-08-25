@@ -1,11 +1,10 @@
 .teamTable {
   background-color: rgb(255, 255, 255);
-  width: 50%;
   margin: 10px;
   border-radius: 8px;
   padding: 10px;
   padding-top: 20px;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
 }
 
 .teamTable li,
@@ -13,19 +12,17 @@
   list-style-type: none;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  height:50px;
 }
 
 .teamTable li {
-  margin: 10px 0px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  height:50px;
 }
 .playedMatches {
   margin-right: 10px;
   font-weight: bold;
-}
-
-.table-info {
-  padding-left: 40px;
 }
 
 .table-info h3 {
@@ -35,7 +32,7 @@
 .win-lose {
   display: flex;
   gap: 7px;
-  margin-right: 10px;
+  margin-right:26px;
 }
 .win-lose-info {
   display: flex;
@@ -43,7 +40,7 @@
 }
 
 .team-name {
-  width: 250px;
+  width: 195px;
   letter-spacing: 1px;
 }
 .team-name h3 {
@@ -52,4 +49,21 @@
 }
 .team-points {
   width: 25px;
+}
+
+.logo img{
+  background-size: contain;
+  width: 26px;
+  height: 26px;
+}
+
+.logo-and-teamName {
+  display: flex;
+  gap: 10px;
+  align-items: center;  
+}
+
+.team-position {
+  width: 25px;
+  font-weight: bold;
 }

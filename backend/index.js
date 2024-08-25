@@ -108,6 +108,41 @@ app.get("/brojPoena24/25", (req, res) => {
   });
 });
 
+app.get("/zadnjaUtakmica", (req, res) => {
+  client.query(
+    `SELECT *
+FROM (
+    SELECT *
+    FROM Utakmica
+    ORDER BY Datum DESC
+    LIMIT 13
+) AS subquery
+ORDER BY Datum
+LIMIT 1;`,
+    (err, results) => {
+      if (err) {
+        console.error("Error executing query", err.stack);
+        res.json("Something is wrong with the database");
+      } else {
+        console.log("Query results are :", results.rows);
+        res.json(results.rows);
+      }
+    }
+  );
+});
+
+app.get("/utakmice", (req, res) => {
+  client.query("SELECT * FROM UtakmicaMomcad", (err, results) => {
+    if (err) {
+      console.error("Error executing query", err.stack);
+      res.json("Something is wrong with the database");
+    } else {
+      console.log("Query results are :", results.rows);
+      res.json(results.rows);
+    }
+  });
+});
+
 app.listen(5000, () => {
   console.log("Server is running on port 5000");
 });

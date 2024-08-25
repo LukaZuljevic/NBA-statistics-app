@@ -1,7 +1,6 @@
 .league-info {
   display: flex;
   align-items: center;
-  width: 50%;
   background: linear-gradient(135deg, #cf9b9b, #ee0707, #7254c4, #0f0fe6);
   background-size: cover;
   backdrop-filter: blur(10px);

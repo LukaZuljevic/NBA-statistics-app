@@ -1,0 +1,65 @@
+.latest-match {
+  margin: 10px;
+  border-radius: 8px;
+  padding-top: 20px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
+  height: 200px;
+  background: linear-gradient(135deg, #dab1b1, #c77171, #ac9fd3, #a4a4d3);
+}
+.latest-match h2 {
+  font-size: 1.1em;
+  margin: 0;
+  padding: 0;
+  margin-left: 30px;
+  margin-bottom: 10px;
+  text-align: left;
+  color: white;
+}
+
+.match-date {
+  text-align: center;
+  font-size: 0.4em;
+}
+
+.latest-match-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(255, 255, 255);
+  border-radius: 8px;
+  height: 120px;
+  margin: 0px 13px;
+}
+
+.score {
+  font-size: 2em;
+  margin: 0 30px;
+  padding: 0;
+  text-align: center;
+}
+
+.score p{
+  font-style: italic;
+}
+
+.team {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  margin: 0 20px;
+}
+
+.team img {
+  height: 60px;
+  width: 70px;
+  background-size: contain;
+}
+
+.team h5 {
+  font-weight: 600;
+}
+
+.dash{
+  font-weight: lighter;
+}
