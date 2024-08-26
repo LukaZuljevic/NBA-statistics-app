@@ -16,8 +16,9 @@
 
 .season-select {
   height: 30px;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   background-color: rgba(0, 0, 0, 0.705);
-  color:white;
+  color: white;
   border-radius: 5px;
+  cursor: pointer;
 }

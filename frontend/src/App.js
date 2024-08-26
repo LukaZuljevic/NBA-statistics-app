@@ -2,6 +2,7 @@ import Header from "./components/Header";
 import TeamTable from "./components/TeamTable";
 import LeagueInfo from "./components/LeagueInfo";
 import LatestMatch from "./components/LatestMatch";
+import PlayersStatistics from "./components/PlayersStatistics";
 import "./index.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -13,6 +14,21 @@ function App() {
   const [season, setSeason] = useState("22/23");
   const [latestMatch, setLatestMatch] = useState([]);
   const [matches, setMatches] = useState([]);
+  const [playerStatistics, setPlayerStatistics] = useState([]);
+
+  //fetching data for the latest match that was played
+  useEffect(() => {
+    const fetchData = async () => {
+      await axios
+        .get(`http://localhost:5000/zadnjaUtakmica`)
+        .then((response) => {
+          const data = response.data;
+          setLatestMatch(data);
+        });
+    };
+
+    fetchData();
+  }, []);
 
   //fetching teams info data
   useEffect(() => {
@@ -66,20 +82,21 @@ function App() {
     fetchData();
   }, []);
 
-  //fetching data for the latest match that was played
+  //fetching player statistics data
   useEffect(() => {
     const fetchData = async () => {
       await axios
-        .get(`http://localhost:5000/zadnjaUtakmica`)
+        .get(`http://localhost:5000/statistikaIgraca${season}`)
         .then((response) => {
           const data = response.data;
-          setLatestMatch(data);
+          setPlayerStatistics(data);
         });
     };
 
     fetchData();
-  }, []);
+  }, [season]);
 
+  //filtering the latest match data
   const latestMatchTeamsId = matches.filter(
     (match) => match.id_utakmica === latestMatch[0].id
   );
@@ -99,6 +116,7 @@ function App() {
     datum: latestMatch[0]?.datum,
   };
 
+  //merging all the teams data into one object
   const teamsWithStats = teams.map((team) => {
     const result = winLossPercentage.find((omjer) => omjer.team === team.ime);
     const points = teamPoints.find((points) => points.team === team.ime);
@@ -124,6 +142,7 @@ function App() {
         </div>
         <div className="right-half">
           <LatestMatch latestMatchData={latestMatchData} />
+          <PlayersStatistics playerStatistics={playerStatistics} />
         </div>
       </div>
     </div>

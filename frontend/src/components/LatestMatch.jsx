@@ -1,7 +1,6 @@
 import teamLogos from "C:\\Projekti\\NBA-statistics-app\\frontend\\src\\teamLogos.js";
 
 function LatestMatch({ latestMatchData }) {
-  console.log(latestMatchData);
 
   if (!latestMatchData?.domacin || !latestMatchData?.gost) {
     return <div>Loading...</div>;
