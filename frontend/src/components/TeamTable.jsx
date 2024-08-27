@@ -1,6 +1,74 @@
 import teamLogos from "C:\\Projekti\\NBA-statistics-app\\frontend\\src\\teamLogos.js";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
-function TeamTable({ teamsWithStats }) {
+function TeamTable({ season }) {
+  const [winLossPercentage, setWinLossPercentage] = useState([]);
+  const [teamPoints, setTeamPoints] = useState([]);
+  const [teams, setTeams] = useState([]);
+
+  //fetching teams info data
+  useEffect(() => {
+    const fetchData = async () => {
+      await axios.get("http://localhost:5000/momcad").then((response) => {
+        const data = response.data;
+        setTeams(data);
+      });
+    };
+
+    fetchData();
+  }, []);
+
+  //fetching wins, losses and draws data for each team
+  useEffect(() => {
+    const fetchData = async () => {
+      await axios
+        .get(`http://localhost:5000/omjerPobjeda${season}`)
+        .then((response) => {
+          const data = response.data;
+          setWinLossPercentage(data);
+        });
+    };
+
+    fetchData();
+  }, [season]);
+
+  //fetching points data for each team
+  useEffect(() => {
+    const fetchData = async () => {
+      await axios
+        .get(`http://localhost:5000/brojPoena${season}`)
+        .then((response) => {
+          const data = response.data;
+          setTeamPoints(data);
+        });
+    };
+
+    fetchData();
+  }, [season]);
+
+  //merging all the teams data into one object
+  const teamsWithStats = teams.map((team) => {
+    const result = winLossPercentage.find((omjer) => omjer.team === team.ime);
+    const points = teamPoints.find((points) => points.team === team.ime);
+
+    return {
+      ...team,
+      wins: result ? result.wins : 0,
+      losses: result ? result.losses : 0,
+      draws: result ? result.draws : 0,
+      points: points ? points.total_points : 0,
+    };
+  });
+
+  //sorting teams by points(2 points for win, 1 point for draw)
+  const sortedTeams = [...teamsWithStats]
+    .map((team) => {
+      const teamPoints = parseInt(team.wins) * 2 + parseInt(team.draws);
+      return { ...team, teamPoints };
+    })
+    .sort((a, b) => b.teamPoints - a.teamPoints);
+
   return (
     <div className="teamTable">
       <div className="table-info">
@@ -15,20 +83,23 @@ function TeamTable({ teamsWithStats }) {
       </div>
       <hr></hr>
       <ol>
-        {teamsWithStats.map((team, index) => {
+        {sortedTeams.map((team, index) => {
           const ukupnoUtakmica =
             parseInt(team.wins) + parseInt(team.losses) + parseInt(team.draws);
 
           const teamLogo =
             teamLogos[team.ime.toLowerCase().replace(/\s/g, "") + "Logo"];
+
+          const teamPoints = parseInt(team.wins) * 2 + parseInt(team.draws);
+
           return (
             <li key={index}>
               <div className="logo-and-teamName">
-                <p className="team-position">{index+1}</p>
+                <p className="team-position">{index + 1}</p>
                 <div className="logo">
                   <img src={teamLogo} />
                 </div>
-                <div className="team-name">
+                <div className="teams-name">
                   <h3>{team.ime}</h3>
                 </div>
               </div>
@@ -38,7 +109,7 @@ function TeamTable({ teamsWithStats }) {
                 <p>{team.losses}</p>
                 <p>{team.draws}</p>
               </div>
-              <p className="team-points">{team.points}</p>
+              <p className="team-points">{teamPoints}</p>
             </li>
           );
         })}

@@ -13,6 +13,7 @@ const brojPoena24_25 = require("../frontend/src/queries/brojPoena/24_25.jsx");
 const statistikaIgraca22_23 = require("../frontend/src/queries/statistikaIgraca/22_23.jsx");
 const statistikaIgraca23_24 = require("../frontend/src/queries/statistikaIgraca/23_24.jsx");
 const statistikaIgraca24_25 = require("../frontend/src/queries/statistikaIgraca/24_25.jsx");
+const statistikaIgracaAll = require("../frontend/src/queries/statistikaIgraca/All.jsx");
 
 const { Client } = require("pg");
 
@@ -173,6 +174,18 @@ app.get("/statistikaIgraca23/24", (req, res) => {
 
 app.get("/statistikaIgraca24/25", (req, res) => {
   client.query(statistikaIgraca24_25, (err, results) => {
+    if (err) {
+      console.error("Error executing query", err.stack);
+      res.json("Something is wrong with the database");
+    } else {
+      console.log("Query results are :", results.rows);
+      res.json(results.rows);
+    }
+  });
+});
+
+app.get("/statistikaIgracaAll", (req, res) => {
+  client.query(statistikaIgracaAll, (err, results) => {
     if (err) {
       console.error("Error executing query", err.stack);
       res.json("Something is wrong with the database");

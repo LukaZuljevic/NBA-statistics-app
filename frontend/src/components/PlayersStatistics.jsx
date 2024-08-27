@@ -1,8 +1,26 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-function PlayersStatistics({ playerStatistics }) {
+function PlayersStatistics({ season }) {
   const [selectedStat, setSelectedStat] = useState("Points");
+  const [playerStatistics, setPlayerStatistics] = useState([]);
 
+  //fetching player statistics data
+  useEffect(() => {
+    const fetchData = async () => {
+      await axios
+        .get(`http://localhost:5000/statistikaIgraca${season}`)
+        .then((response) => {
+          const data = response.data;
+          setPlayerStatistics(data);
+        });
+    };
+
+    fetchData();
+  }, [season]);
+
+  //handling the change of the selected statistic
   const handleStatChange = (e) => {
     setSelectedStat(e.target.value);
   };
@@ -23,6 +41,12 @@ function PlayersStatistics({ playerStatistics }) {
     const statProperty = statMapping[selectedStat];
     return parseInt(b[statProperty], 10) - parseInt(a[statProperty], 10);
   });
+
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate("/all-players-statistics");
+  };
 
   return (
     <div className="players-stats">
@@ -60,6 +84,12 @@ function PlayersStatistics({ playerStatistics }) {
           </li>
         ))}
       </ul>
+      <hr></hr>
+      <div>
+        <button className="btn" onClick={handleClick}>
+          View All
+        </button>
+      </div>
     </div>
   );
 }

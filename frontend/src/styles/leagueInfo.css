@@ -22,3 +22,8 @@
   border-radius: 5px;
   cursor: pointer;
 }
+
+.season-select:hover {
+  box-shadow: 0px 8px 16px rgba(0, 123, 255, 0.3);
+  background-color: rgba(0, 0, 0, 0.8);
+}

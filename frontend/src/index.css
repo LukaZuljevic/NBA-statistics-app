@@ -3,6 +3,7 @@
 @import "./styles/leagueInfo.css";
 @import "./styles/latestMatch.css";
 @import "./styles/playersStatistics.css";
+@import "./styles/allPlayersStatistics.css";
 
 * {
   margin: 0;

@@ -1,0 +1,180 @@
+.filter-sort-controls {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  margin:auto;
+  width: 100%;
+  max-width: 1200px;
+  padding: 20px;
+  background-color: #f4f4f9;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.season-sort,
+.sort-select,
+.filter-select {
+  padding: 12px;
+  font-size: 1.1em;
+  border: none;
+  border-radius: 8px;
+  background: #007bff;
+  color: #fff;
+  box-shadow: 0px 4px 8px rgba(0, 123, 255, 0.2);
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.sort-label{
+  font-weight: 700;
+  color: #333;
+  margin-right: 15px;
+  font-size: 1.1em;
+}
+
+.season-sort:hover,
+.sort-select:hover,
+.filter-select:hover {
+  background-color: #0056b3;
+  box-shadow: 0px 6px 12px rgba(0, 123, 255, 0.3);
+}
+
+.sort-label,
+.filter-label {
+  font-weight: 700;
+  color: #333;
+  margin-right: 15px;
+  font-size: 1.1em;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+label select {
+  margin-top: 5px;
+}
+
+
+.all-players-stats {
+  background-color: #f4f4f9;
+  margin: auto;
+  width: 100%;
+  max-width: 1200px;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.all-players-stats ul {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 0;
+}
+
+.all-players-stats li {
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 570px;
+  height: 70px;
+  margin-bottom: 10px;
+  padding: 15px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.all-players-stats li:hover {
+  transform: translateY(-4px);
+  box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+.single-player-name-section {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+}
+
+.player {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.single-player-name {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-family: "Nunito", sans-serif;
+  font-weight: 700;
+  color: #333;
+  width: 165px;
+}
+
+.stat-section {
+  display: flex;
+  flex-direction: column;
+  margin-left: 40px;
+}
+
+.stat-labels,
+.stat-values {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.stat-labels p {
+  width: 45px;
+  text-align: center;
+  font-weight: 600;
+  color: #777;
+}
+
+.stat-values p {
+  width: 45px;
+  text-align: center;
+  font-weight: 600;
+  font-style: oblique;
+  color: #000000;
+}
+
+.team-name {
+  font-size: 0.8em;
+  font-weight: 600;
+  color: #777;
+  width: 100%;
+}
+
+.hr {
+  width: 100%;
+  margin: 0;
+  border: 0.5px solid #ddd;
+}
+
+.btn {
+  padding: 12px 24px;
+  margin-top: 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1em;
+  font-weight: bold;
+  box-shadow: 0px 4px 8px rgba(0, 123, 255, 0.2);
+  transition: background-color 0.2s, box-shadow 0.2s;
+}
+
+.btn:hover {
+  background-color: #0056b3;
+  box-shadow: 0px 8px 16px rgba(0, 123, 255, 0.3);
+}
