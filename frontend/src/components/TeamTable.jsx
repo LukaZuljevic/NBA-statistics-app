@@ -79,7 +79,7 @@ function TeamTable({ season }) {
           <p>L</p>
           <p>D</p>
         </div>
-        <p>PTS</p>
+        <p className="points-info">PTS</p>
       </div>
       <hr></hr>
       <ol>
@@ -97,7 +97,10 @@ function TeamTable({ season }) {
               <div className="logo-and-teamName">
                 <p className="team-position">{index + 1}</p>
                 <div className="logo">
-                  <img src={teamLogo} />
+                  <img
+                    src={teamLogo}
+                    style={{ background: "rgba(0,0,0,0)" }}
+                  />
                 </div>
                 <div className="teams-name">
                   <h3>{team.ime}</h3>

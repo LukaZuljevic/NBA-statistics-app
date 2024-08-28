@@ -87,7 +87,7 @@ function PlayersStatistics({ season }) {
       <hr></hr>
       <div>
         <button className="btn" onClick={handleClick}>
-          View All
+          View detailed statistics
         </button>
       </div>
     </div>

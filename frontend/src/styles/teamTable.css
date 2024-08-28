@@ -1,10 +1,11 @@
 .teamTable {
-  background-color: rgb(255, 255, 255);
+  background-color: #f7f8fa;
   margin: 10px;
-  border-radius: 8px;
-  padding: 10px;
-  padding-top: 20px;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
+  border-radius: 16px;
+  padding: 15px;
+  box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.1);
+  font-family: 'Montserrat', sans-serif;
+  overflow: hidden;
 }
 
 .teamTable li,
@@ -13,57 +14,95 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height:50px;
+  padding: 3px 0;
+  font-size: 12px;
 }
 
 .teamTable li {
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  height:50px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
+
+.teamTable li:hover {
+  background-color: #e0e7ff;
+  transform: translateY(-2px);
+  cursor: pointer;
+}
+
 .playedMatches {
-  margin-right: 10px;
-  font-weight: bold;
+  margin-right: 15px;
+  font-weight: 600;
+  font-size: 12px;
+  color: #4a4a4a;
 }
 
 .table-info h3 {
   width: 245px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  color: #2a2a2a;
+  margin-left:10px;
 }
 
 .win-lose {
   display: flex;
-  gap: 7px;
-  margin-right:26px;
+  gap: 12px;
+  margin-right: 20px;
 }
+
 .win-lose-info {
   display: flex;
-  gap: 4px;
+  gap: 10px;
 }
 
 .teams-name {
-  width: 195px;
-  letter-spacing: 1px;
-}
-.teams-name h3 {
-  font-weight: 100;
-  font-size: 16px;
-}
-.team-points {
-  width: 25px;
+  width: 200px;
+  letter-spacing: 0.5px;
 }
 
-.logo img{
+.teams-name h3 {
+  font-weight: 600;
+  font-size: 12px;
+  margin: 0;
+  color: #3a3a3a;
+}
+
+.team-points {
+  width: 35px;
+  font-size: 12px;
+  text-align: right;
+  font-weight: 600;
+  color: #323438;
+}
+
+.points-info{
+  font-weight: bold;
+}
+
+.logo img {
   background-size: contain;
-  width: 26px;
-  height: 26px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  transition: transform 0.4s ease, box-shadow 0.3s ease;
+}
+
+.logo img:hover {
+  transform: scale(1.15);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .logo-and-teamName {
   display: flex;
-  gap: 10px;
-  align-items: center;  
+  gap: 14px;
+  align-items: center;
 }
 
 .team-position {
-  width: 25px;
+  width: 28px;
   font-weight: bold;
+  font-size: 12px;
+  text-align: center;
+  color: #2d2d2d;
 }

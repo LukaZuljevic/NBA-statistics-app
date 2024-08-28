@@ -1,29 +1,56 @@
-.league-info {
+.league-bar {
   display: flex;
   align-items: center;
-  background: linear-gradient(135deg, #cf9b9b, #ee0707, #7254c4, #0f0fe6);
+  background: linear-gradient(135deg, rgba(250, 2, 2, 0.65), rgba(197, 94, 94, 0.65), rgba(131, 109, 197, 0.65), rgba(1, 1, 253, 0.65));
   background-size: cover;
   backdrop-filter: blur(10px);
-  border-radius: 7px;
+  border-radius: 15px;
   margin: 10px;
+  margin-bottom:15px;
 }
 
-.league-info img {
-  height: 120px;
-  width: 120px;
-  padding: 20px;
+.league-logo{
+  background-size: contain;
+  height: 80px;
+  width: 80px;
+  border-radius: 4px;
+  margin:20px;
+}
+
+.league-info{
+  display:flex;
+  flex-direction: column;
+}
+
+.usa-section{
+  display: flex;
+  align-items: center;
+  gap:5px;
+  color:white;
+}
+
+.usa-section select{
+  margin-left:15px;
+}
+
+.league-info img{
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+  margin: 10px;
 }
 
 .season-select {
   height: 30px;
   font-family: "Roboto", sans-serif;
-  background-color: rgba(0, 0, 0, 0.705);
+  background-color: rgba(0, 0, 0, 0.575);
   color: white;
   border-radius: 5px;
   cursor: pointer;
+  padding:0px 10px;
 }
 
 .season-select:hover {
-  box-shadow: 0px 8px 16px rgba(0, 123, 255, 0.3);
-  background-color: rgba(0, 0, 0, 0.8);
+  box-shadow: 0px 8px 16px rgba(5, 38, 73, 0.2);
+  background-color: rgba(0, 0, 0, 0.6);
 }

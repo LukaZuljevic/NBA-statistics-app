@@ -1,65 +1,84 @@
 .latest-match {
   margin: 10px;
-  border-radius: 8px;
-  padding-top: 20px;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
-  height: 200px;
+  border-radius: 15px;
+  padding: 20px 20px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.25);
   background: linear-gradient(135deg, #dab1b1, #c77171, #ac9fd3, #a4a4d3);
-}
-.latest-match h2 {
-  font-size: 1.1em;
-  margin: 0;
-  padding: 0;
-  margin-left: 30px;
-  margin-bottom: 10px;
-  text-align: left;
-  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  color: #ffffff;
+  font-family: 'Poppins', sans-serif; 
 }
 
-.match-date {
+.latest-match h2 {
+  font-size: 1.5em;
+  margin: 0;
+  padding: 0;
+  font-weight: 700;
   text-align: center;
-  font-size: 0.4em;
+  letter-spacing: 1px;
 }
 
 .latest-match-content {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  background-color: rgb(255, 255, 255);
-  border-radius: 8px;
-  height: 120px;
-  margin: 0px 13px;
-}
-
-.score {
-  font-size: 2em;
-  margin: 0 30px;
-  padding: 0;
-  text-align: center;
-}
-
-.score p{
-  font-style: italic;
+  width: 100%;
+  padding: 10px 0;
 }
 
 .team {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 15px;
-  margin: 0 20px;
+  gap: 10px;
+  max-width: 100px;
 }
 
 .team img {
-  height: 60px;
-  width: 70px;
-  background-size: contain;
+  height: 80px;
+  width: 80px;
+  object-fit: contain;
+  border-radius: 8px;
 }
 
 .team h5 {
+  font-size: 0.85em;
   font-weight: 600;
+  text-align: center;
+  color: #eaeaea;
 }
 
-.dash{
-  font-weight: lighter;
+.score {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.score h4 {
+  font-size: 2.5em;
+  margin: 0;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  letter-spacing: 2px;
+  color: #fff;
+}
+
+.dash {
+  margin: 0 8px;
+  font-weight: 400;
+  font-size: 1.2em;
+  color: #f5f5f5;
+}
+
+.match-date {
+  font-size: 0.8em;
+  color: #ddd;
+  text-align: center;
+  font-style: italic;
+  margin-top: 5px;
 }

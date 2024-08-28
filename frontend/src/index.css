@@ -11,7 +11,11 @@
   box-sizing: border-box;
 }
 .container {
-  background-color: rgb(226, 226, 226);
+  background-color: rgba(213, 219, 231, 0.432);
+}
+
+.app-components{
+  margin: 0px 60px;
 }
 
 .left-half {
