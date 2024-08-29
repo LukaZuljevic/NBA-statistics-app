@@ -50,6 +50,7 @@ function PlayersStatistics({ season }) {
 
   return (
     <div className="players-stats">
+      <h4 className="statistics-title">Player statistics</h4>
       <div>
         <select className="stat-select" onChange={handleStatChange}>
           <option value="Points">Points</option>

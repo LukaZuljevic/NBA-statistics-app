@@ -196,6 +196,46 @@ app.get("/statistikaIgracaAll", (req, res) => {
   });
 });
 
+app.get("/dvorane", (req, res) => {
+  client.query("SELECT * FROM stadion", (err, results) => {
+    if (err) {
+      console.error("Error executing query", err.stack);
+      res.json("Something is wrong with the database");
+    } else {
+      console.log("Query results are :", results.rows);
+      res.json(results.rows);
+    }
+  });
+});
+
+app.get("/trener", (req, res) => {
+  client.query("SELECT * FROM trener", (err, results) => {
+    if (err) {
+      console.error("Error executing query", err.stack);
+      res.json("Something is wrong with the database");
+    } else {
+      console.log("Query results are :", results.rows);
+      res.json(results.rows);
+    }
+  });
+});
+
+app.get("/igrac/:id", (req, res) => {
+  const id = req.params.id;
+  client.query(
+    `SELECT * FROM igrac WHERE id_momcad = ${id}`,
+    (err, results) => {
+      if (err) {
+        console.error("Error executing query", err.stack);
+        res.json("Something is wrong with the database");
+      } else {
+        console.log("Query results are :", results.rows);
+        res.json(results.rows);
+      }
+    }
+  );
+});
+
 app.listen(5000, () => {
   console.log("Server is running on port 5000");
 });

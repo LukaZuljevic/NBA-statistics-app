@@ -3,6 +3,7 @@ import { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./Layout";
 import AllPlayersStatistics from "./AllPlayersStatistics";
+import TeamPage from "./TeamPage";
 
 function App() {
   const [season, setSeason] = useState("22/23");
@@ -18,6 +19,7 @@ function App() {
           path="/all-players-statistics"
           element={<AllPlayersStatistics />}
         ></Route>
+        <Route path="/team/:teamId" element={<TeamPage />}></Route>
       </Routes>
     </BrowserRouter>
   );

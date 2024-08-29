@@ -4,7 +4,7 @@
 @import "./styles/latestMatch.css";
 @import "./styles/playersStatistics.css";
 @import "./styles/allPlayersStatistics.css";
-
+@import "./styles/teamPage.css";
 * {
   margin: 0;
   padding:0;

@@ -3,13 +3,19 @@
   border-radius: 15px;
   padding: 20px 20px;
   box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.25);
-  background: linear-gradient(135deg, #dab1b1, #c77171, #ac9fd3, #a4a4d3);
+  background: linear-gradient(
+    135deg,
+    rgba(212, 212, 212, 0.6),
+    rgba(188, 188, 188, 0.6),
+    rgba(224, 224, 224, 0.6),
+    rgba(242, 242, 242, 0.6)
+  );
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 15px;
-  color: #ffffff;
-  font-family: 'Poppins', sans-serif; 
+  color: #333;
+  font-family: "Poppins", sans-serif;
 }
 
 .latest-match h2 {
@@ -19,6 +25,7 @@
   font-weight: 700;
   text-align: center;
   letter-spacing: 1px;
+  color: #2c2c2c;
 }
 
 .latest-match-content {
@@ -48,7 +55,7 @@
   font-size: 0.85em;
   font-weight: 600;
   text-align: center;
-  color: #eaeaea;
+  color: #4d4d4d;
 }
 
 .score {
@@ -65,19 +72,19 @@
   display: flex;
   align-items: center;
   letter-spacing: 2px;
-  color: #fff;
+  color: #1c1c1c;
 }
 
 .dash {
   margin: 0 8px;
   font-weight: 400;
   font-size: 1.2em;
-  color: #f5f5f5;
+  color: #2c2c2c;
 }
 
 .match-date {
   font-size: 0.8em;
-  color: #ddd;
+  color: #555;
   text-align: center;
   font-style: italic;
   margin-top: 5px;

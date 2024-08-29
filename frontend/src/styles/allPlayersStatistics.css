@@ -3,7 +3,7 @@
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  margin:auto;
+  margin: auto;
   width: 100%;
   max-width: 1200px;
   padding: 20px;
@@ -25,7 +25,7 @@
   transition: background-color 0.3s, box-shadow 0.3s;
 }
 
-.sort-label{
+.sort-label {
   font-weight: 700;
   color: #333;
   margin-right: 15px;
@@ -56,7 +56,6 @@ label {
 label select {
   margin-top: 5px;
 }
-
 
 .all-players-stats {
   background-color: #f4f4f9;
@@ -143,7 +142,6 @@ label select {
   width: 45px;
   text-align: center;
   font-weight: 600;
-  font-style: oblique;
   color: #000000;
 }
 
