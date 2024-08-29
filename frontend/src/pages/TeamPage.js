@@ -1,6 +1,7 @@
 import { useLocation } from "react-router-dom";
-import teamLogos from "./teamLogos";
-import staduimSeats from "./assets/stadiumSeats.png";
+import teamLogos from "../teamLogos";
+import coachImages from "../coachImages";
+import staduimSeats from "../assets/stadiumSeats.png";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -10,9 +11,9 @@ function TeamPage() {
   const location = useLocation();
   const { team } = location.state;
 
-  console.log(team);
+const teamCoach = coachImages[team.ime.toLowerCase().replace(/\s/g, "") + "Coach"];
 
-  //fetch all the players with the same team id as the team id
+//fetch all the players with the same team id as the team id
   useEffect(() => {
     const fetchData = async () => {
       await axios
@@ -25,8 +26,6 @@ function TeamPage() {
 
     fetchData();
   }, []);
-
-  console.log(players);
 
   return (
     <div className="team-page">
@@ -68,7 +67,7 @@ function TeamPage() {
               <h2>Coach</h2>
               <div className="coach-info">
                 <img
-                  src={team.coachPicture}
+                  src={teamCoach}
                   alt={`Coach ${team.coachName}`}
                   className="coach-image"
                 />
@@ -77,7 +76,7 @@ function TeamPage() {
                     <strong>Name:</strong> {team.coach.ime} {team.coach.prezime}
                   </p>
                   <p>
-                    <strong>Age of birth:</strong> {team.coach.godiste}
+                    <strong>Date of birth:</strong> {team.coach.godiste}.
                   </p>
                   <p>
                     <strong>Titles:</strong> {team.coach.brojtitula}
@@ -112,7 +111,9 @@ function TeamPage() {
               return (
                 <li key={index}>
                   <div className="player-info">
-                    <h4>{player.ime} {player.prezime}</h4>
+                    <h4>
+                      {player.ime} {player.prezime}
+                    </h4>
                   </div>
                 </li>
               );

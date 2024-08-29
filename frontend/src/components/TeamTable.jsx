@@ -107,8 +107,6 @@ function TeamTable({ season }) {
     })
     .sort((a, b) => b.teamPoints - a.teamPoints);
 
-  console.log(sortedTeams[0]);
-
   return (
     <div className="teamTable">
       <h4 className="standings">Standings</h4>

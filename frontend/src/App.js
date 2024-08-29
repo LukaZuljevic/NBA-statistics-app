@@ -2,8 +2,8 @@ import "./index.css";
 import { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./Layout";
-import AllPlayersStatistics from "./AllPlayersStatistics";
-import TeamPage from "./TeamPage";
+import AllPlayersStatistics from "./pages/AllPlayersStatistics";
+import TeamPage from "./pages/TeamPage";
 
 function App() {
   const [season, setSeason] = useState("22/23");
