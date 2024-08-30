@@ -1,4 +1,5 @@
 import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import teamLogos from "../teamLogos";
 import coachImages from "../coachImages";
 import staduimSeats from "../assets/stadiumSeats.png";
@@ -8,12 +9,18 @@ import axios from "axios";
 function TeamPage() {
   const [players, setPlayers] = useState([]);
 
+  const navigate = useNavigate();
   const location = useLocation();
   const { team } = location.state;
 
-const teamCoach = coachImages[team.ime.toLowerCase().replace(/\s/g, "") + "Coach"];
+  const handlePlayerClick = (player) => {
+    navigate(`/player/${player.id}`, { state: { player } });
+  };
 
-//fetch all the players with the same team id as the team id
+  const teamCoach =
+    coachImages[team.ime.toLowerCase().replace(/\s/g, "") + "Coach"];
+
+  //fetch all the players with the same team id as the team id
   useEffect(() => {
     const fetchData = async () => {
       await axios
@@ -109,7 +116,7 @@ const teamCoach = coachImages[team.ime.toLowerCase().replace(/\s/g, "") + "Coach
           <ul>
             {players.map((player, index) => {
               return (
-                <li key={index}>
+                <li onClick={() => handlePlayerClick(player)} key={index}>
                   <div className="player-info">
                     <h4>
                       {player.ime} {player.prezime}

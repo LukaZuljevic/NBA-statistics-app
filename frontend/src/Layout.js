@@ -4,6 +4,7 @@ import LatestMatch from "./components/LatestMatch";
 import PlayersStatistics from "./components/PlayersStatistics";
 import TeamTable from "./components/TeamTable";
 import LeagueInfo from "./components/LeagueInfo";
+import Footer from "./components/Footer";
 
 const Layout = ({season, setSeason }) => {
   return (
@@ -21,6 +22,7 @@ const Layout = ({season, setSeason }) => {
           <PlayersStatistics season={season} />
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

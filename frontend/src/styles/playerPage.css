@@ -1,0 +1,74 @@
+.player-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid rgba(158, 145, 145, 0.685);
+    border-radius: 10px;
+    width: 500px;
+    margin: auto;
+    margin-top: 5%;
+    padding: 30px;
+    gap: 25px;
+    font-family: "Roboto", sans-serif;
+    background-color: #f7f3f0da;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.35);
+    color: #333;
+  }
+  
+  .player-page {
+    background-color: rgba(213, 219, 231, 0.432);
+    min-height: 100vh;
+  }
+  
+  .player-picture {
+    height: 120px;
+    width: 120px;
+    border-radius: 50%;
+    border: 2px solid rgb(158, 145, 145);
+  }
+  
+  .player-info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .player-details {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    margin-left: 10%;
+  }
+  
+  .jersey-container {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .jersey {
+    height: 200px;
+    width: 200px;
+    background-size: contain;
+  }
+  
+  .jersey-number,
+  .jersey-surname {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-weight: bold;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+  
+  .jersey-number {
+    top: 65%;
+    font-size: 50px;
+    transform: translate(-50%, -50%);
+  }
+  
+  .jersey-surname {
+    top: 40%;
+    font-size: 12px;
+  }
+  

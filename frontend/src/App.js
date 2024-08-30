@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./Layout";
 import AllPlayersStatistics from "./pages/AllPlayersStatistics";
 import TeamPage from "./pages/TeamPage";
+import PlayerPage from "./pages/PlayerPage";
 
 function App() {
   const [season, setSeason] = useState("22/23");
@@ -20,6 +21,7 @@ function App() {
           element={<AllPlayersStatistics />}
         ></Route>
         <Route path="/team/:teamId" element={<TeamPage />}></Route>
+        <Route path="/player/:playerId" element={<PlayerPage />}></Route>
       </Routes>
     </BrowserRouter>
   );

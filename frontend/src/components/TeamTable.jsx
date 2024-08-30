@@ -16,6 +16,7 @@ function TeamTable({ season }) {
     navigate(`/team/${team.ime}`, { state: { team } });
   };
 
+
   //fetching coach data
   useEffect(() => {
     const fetchData = async () => {
