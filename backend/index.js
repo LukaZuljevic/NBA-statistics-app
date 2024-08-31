@@ -22,7 +22,7 @@ const client = new Client({
   port: 5432,
   user: "postgres",
   password: "rootuser",
-  database: "NBA_league",
+  database: "NBA_league_NEW",
 });
 
 client.connect().then(() => console.log("Connected to database"));
@@ -120,7 +120,7 @@ FROM (
     SELECT *
     FROM Utakmica
     ORDER BY Datum DESC
-    LIMIT 13
+    LIMIT 1
 ) AS subquery
 ORDER BY Datum
 LIMIT 1;`,

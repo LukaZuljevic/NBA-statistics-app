@@ -6,7 +6,7 @@ WITH SeasonDates AS (
     FROM
         sezona
     WHERE
-        naziv = '22/23' -- Replace with the actual season name or identifier
+        naziv = '22/23' 
 ),
 
 TeamPoints AS (

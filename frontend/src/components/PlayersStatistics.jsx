@@ -20,6 +20,8 @@ function PlayersStatistics({ season }) {
     fetchData();
   }, [season]);
 
+  console.log(playerStatistics);
+
   //handling the change of the selected statistic
   const handleStatChange = (e) => {
     setSelectedStat(e.target.value);
@@ -73,11 +75,11 @@ function PlayersStatistics({ season }) {
               <p className="player-rank">{index + 1}</p>
               <div className="player-info-section">
                 <div className="player-name">
-                  <h4>{player.firstname}</h4>
-                  <h4>{player.lastname}</h4>
+                  <h4>{player.player_name}</h4>
+                  <h4>{player.player_surname}</h4>
                 </div>
                 <p className="team-name">
-                  <span>Team:</span> {player.teamname}
+                  <span>Team:</span> {player.team_name}
                 </p>
               </div>
             </div>

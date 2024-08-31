@@ -1,34 +1,44 @@
-const statistikaIgracaQuery = `SELECT 
-    s.Naziv AS Season,
-    i.Ime AS firstName,
-    i.Prezime AS lastName,
-    m.Ime AS TeamName,
-    SUM(uis.Points) AS TotalPoints,
-    SUM(uis.Rebounds) AS TotalRebounds,
-    SUM(uis.Assists) AS TotalAssists,
-    SUM(uis.Steals) AS TotalSteals,
-    SUM(uis.Blocks) AS TotalBlocks,
-    SUM(uis.Turnovers) AS TotalTurnovers,
-    SUM(uis.Fouls) AS TotalFouls
-FROM 
-    UtakmicaIgracStatistika uis
-JOIN 
-    Igrac i ON uis.id_Igrac = i.id
-JOIN 
-    Momcad m ON i.id_Momcad = m.id
-JOIN 
-    Utakmica u ON uis.id_Utakmica = u.id
-JOIN 
-    UtakmicaMomcad um ON u.id = um.id_Utakmica
-JOIN 
-    SezonaMomcad sm ON um.id_Momcad = sm.id_Momcad
-JOIN 
-    Sezona s ON sm.id_Sezona = s.id
-WHERE 
-    s.Naziv = '24/25'  
-GROUP BY 
-    s.Naziv, m.ime, i.Ime, i.Prezime
-ORDER BY 
-    s.Naziv,m.ime,  i.Prezime, i.Ime;`;
+const statistikaIgracaQuery = `WITH PlayerSeasonStats AS (
+    SELECT
+        i.id AS player_id,
+        i.Ime AS player_name,
+        i.Prezime AS player_surname,
+        m.Ime AS team_name,
+        s.Naziv AS season_name,
+
+        SUM(uis.Points) AS totalpoints,
+        SUM(uis.Rebounds) AS totalrebounds,
+        SUM(uis.Assists) AS totalassists,
+        SUM(uis.Steals) AS totalsteals,
+        SUM(uis.Blocks) AS totalblocks,
+        SUM(uis.Turnovers) AS totalturnovers,
+        SUM(uis.Fouls) AS totalfouls
+
+    FROM Igrac i
+    JOIN UtakmicaIgracStatistika uis ON i.id = uis.id_Igrac
+    JOIN Utakmica u ON uis.id_Utakmica = u.id
+    JOIN Momcad m ON i.id_Momcad = m.id
+    JOIN Sezona s ON u.Datum BETWEEN s.Pocetak AND s.Kraj
+
+	WHERE s.naziv = '24/25'
+    GROUP BY i.id, i.Ime, i.Prezime, m.Ime, s.Naziv
+)
+
+SELECT
+    player_id,
+    player_name,
+    player_surname,
+    team_name,
+    season_name,
+    totalpoints,
+    totalrebounds,
+    totalassists,
+    totalsteals,
+    totalblocks,
+    totalturnovers,
+    totalfouls
+    
+FROM PlayerSeasonStats
+ORDER BY player_id, season_name;`;
 
 module.exports = statistikaIgracaQuery;

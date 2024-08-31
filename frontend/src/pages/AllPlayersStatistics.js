@@ -39,7 +39,7 @@ function AllPlayersStatistics() {
 
   // filtering by team name
   const filteredPlayers = filterTeam
-    ? sortedPlayers.filter((player) => player.teamname === filterTeam)
+    ? sortedPlayers.filter((player) => player.team_name === filterTeam)
     : sortedPlayers;
 
   return (
@@ -87,7 +87,7 @@ function AllPlayersStatistics() {
             <option value="">All Teams</option>
             {[
               //new Set ce izbaciti sve duplikate i ostavit ce te samo sa 30 razlicitih imena timova!
-              ...new Set(playersStatistics.map((player) => player.teamname)),
+              ...new Set(playersStatistics.map((player) => player.team_name)),
             ].map((team) => (
               <option key={team} value={team}>
                 {team}
@@ -106,8 +106,8 @@ function AllPlayersStatistics() {
                 <div className="player-info-section">
                   <div className="player">
                     <div className="single-player-name">
-                      <h4>{player.firstname}</h4>
-                      <h4>{player.lastname}</h4>
+                      <h4>{player.player_name}</h4>
+                      <h4>{player.player_surname}</h4>
                     </div>
                     <div className="stat-section">
                       <div className="stat-labels">
@@ -129,7 +129,7 @@ function AllPlayersStatistics() {
                     </div>
                   </div>
                   <p className="team-name">
-                    <span>Team:</span> {player.teamname}
+                    <span>Team:</span> {player.team_name}
                   </p>
                   <hr className="hr"></hr>
                 </div>
