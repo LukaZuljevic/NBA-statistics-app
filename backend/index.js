@@ -236,6 +236,18 @@ app.get("/igrac/:id", (req, res) => {
   );
 });
 
+app.get("/utakmiceInfo", (req, res) => {
+  client.query(`SELECT * FROM utakmica`, (err, results) => {
+    if (err) {
+      console.error("Error executing query", err.stack);
+      res.json("Something is wrong with the database");
+    } else {
+      console.log("Query results are :", results.rows);
+      res.json(results.rows);
+    }
+  });
+});
+
 app.listen(5000, () => {
   console.log("Server is running on port 5000");
 });

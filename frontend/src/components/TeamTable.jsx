@@ -13,7 +13,7 @@ function TeamTable({ season }) {
   const navigate = useNavigate();
 
   const handleTeamClick = (team) => {
-    navigate(`/team/${team.ime}`, { state: { team } });
+    navigate(`/team/${team.ime}`, { state: {team } });
   };
 
 

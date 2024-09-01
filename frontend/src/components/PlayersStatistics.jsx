@@ -20,8 +20,6 @@ function PlayersStatistics({ season }) {
     fetchData();
   }, [season]);
 
-  console.log(playerStatistics);
-
   //handling the change of the selected statistic
   const handleStatChange = (e) => {
     setSelectedStat(e.target.value);

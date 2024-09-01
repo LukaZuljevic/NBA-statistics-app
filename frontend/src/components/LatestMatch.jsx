@@ -1,11 +1,18 @@
 import teamLogos from "C:\\Projekti\\NBA-statistics-app\\frontend\\src\\teamLogos.js";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function LatestMatch() {
   const [teams, setTeams] = useState([]);
   const [latestMatch, setLatestMatch] = useState([]);
   const [matches, setMatches] = useState([]);
+
+  const navigate = useNavigate();
+
+  const handleMatchesClick = () => {
+    navigate("/matches", { state: { matches, teams } });
+  };
 
   //fetching teams info data
   useEffect(() => {
@@ -60,16 +67,21 @@ function LatestMatch() {
     return { ...team, ime: teamName.ime };
   });
 
+  //finding the home and away team
+  const domaci = latestMatchTeams.find((team) => team.domacigosti === "domaci");
+  const gosti = latestMatchTeams.find((team) => team.domacigosti === "gosti");
+
+  //creating the object for the latest match
   const latestMatchData = {
-    domacin: latestMatchTeams[0],
-    gost: latestMatchTeams[1],
+    domacin: domaci,
+    gost: gosti,
     id: latestMatch[0]?.id,
     sudac: latestMatch[0]?.sudac,
     rang: latestMatch[0]?.rang,
     datum: latestMatch[0]?.datum,
   };
 
-  if (!latestMatchData?.domacin || !latestMatchData?.gost) {
+  if (!latestMatchData.domacin || !latestMatchData.gost) {
     return <div>Loading...</div>;
   }
 
@@ -102,8 +114,8 @@ function LatestMatch() {
 
         <div className="score">
           <h4>
-            {latestMatchData.gost.brojkoseva} <span className="dash">-</span>{" "}
-            {latestMatchData.domacin.brojkoseva}
+            {latestMatchData.domacin.brojkoseva} <span className="dash">-</span>{" "}
+            {latestMatchData.gost.brojkoseva}
           </h4>
           <p className="match-date">{date}</p>
         </div>
@@ -112,6 +124,11 @@ function LatestMatch() {
           <img src={awayTeamLogo} />
           <h5>{latestMatchData.gost.ime}</h5>
         </div>
+      </div>
+
+      <div className="more-matches-section">
+        <hr></hr>
+        <button onClick={handleMatchesClick}>See all matches</button>
       </div>
     </div>
   );

@@ -5,6 +5,7 @@ import Layout from "./Layout";
 import AllPlayersStatistics from "./pages/AllPlayersStatistics";
 import TeamPage from "./pages/TeamPage";
 import PlayerPage from "./pages/PlayerPage";
+import AllMatches from "./pages/AllMatches";
 
 function App() {
   const [season, setSeason] = useState("22/23");
@@ -22,6 +23,7 @@ function App() {
         ></Route>
         <Route path="/team/:teamId" element={<TeamPage />}></Route>
         <Route path="/player/:playerId" element={<PlayerPage />}></Route>
+        <Route path="/matches" element={<AllMatches />}></Route>
       </Routes>
     </BrowserRouter>
   );
