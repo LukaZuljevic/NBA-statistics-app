@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import axios from "axios";
 import teamLogos from "../teamLogos";
 
-function AllMatches() {
+function AllMatchesPage() {
   const [matchesInfo, setMatchesInfo] = useState([]);
   const [beginDate, setBeginDate] = useState("2022-10-18");
   const [endDate, setEndDate] = useState("2025-06-15");
@@ -14,10 +14,15 @@ function AllMatches() {
   //fetching info for all matches that were played
   useEffect(() => {
     const fetchData = async () => {
-      await axios.get("http://localhost:5000/utakmiceInfo").then((response) => {
-        const data = response.data;
-        setMatchesInfo(data);
-      });
+      await axios
+        .get("http://localhost:5000/utakmiceInfo")
+        .then((response) => {
+          const data = response.data;
+          setMatchesInfo(data);
+        })
+        .catch((error) => {
+          console.error("Failed to fetch data:", error);
+        });
     };
 
     fetchData();
@@ -49,23 +54,26 @@ function AllMatches() {
     }, {})
   );
 
+  //adjusting the data for all matches that were played
   const adjustedMatches = orderedMatches.map((match) => {
-    const matchDate = new Date(
-      matchesInfo
-        .find((matchInfo) => matchInfo.id === match.id)
-        .datum.split("T")[0]
-    );
+    const matchInfo = matchesInfo.find((info) => info.id === match.id);
+    const matchDate = matchInfo
+      ? new Date(matchInfo.datum.split("T")[0])
+      : null;
 
     return {
       ...match,
+
       domaci: {
         ...match.domaci,
         ime: teams.find((team) => team.id === match.domaci.id_momcad).ime,
       },
+
       gosti: {
         ...match.gosti,
         ime: teams.find((team) => team.id === match.gosti.id_momcad).ime,
       },
+
       datum: matchDate.toLocaleDateString("en-GB", {
         day: "numeric",
         month: "short",
@@ -153,4 +161,4 @@ function AllMatches() {
   );
 }
 
-export default AllMatches;
+export default AllMatchesPage;

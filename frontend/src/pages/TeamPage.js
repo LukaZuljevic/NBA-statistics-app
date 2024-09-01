@@ -1,5 +1,4 @@
-import { useLocation } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import teamLogos from "../teamLogos";
 import coachImages from "../coachImages";
 import staduimSeats from "../assets/stadiumSeats.png";
@@ -9,10 +8,10 @@ import axios from "axios";
 function TeamPage() {
   const [players, setPlayers] = useState([]);
 
-  const navigate = useNavigate();
   const location = useLocation();
   const { team } = location.state;
 
+  const navigate = useNavigate();
   const handlePlayerClick = (player) => {
     navigate(`/player/${player.id}`, { state: { player } });
   };
@@ -20,7 +19,7 @@ function TeamPage() {
   const teamCoach =
     coachImages[team.ime.toLowerCase().replace(/\s/g, "") + "Coach"];
 
-  //fetch all the players with the same team id as the team id
+  //fetching all the players with the same team id as the team id
   useEffect(() => {
     const fetchData = async () => {
       await axios
@@ -28,6 +27,8 @@ function TeamPage() {
         .then((response) => {
           const data = response.data;
           setPlayers(data);
+        }).catch((error) => {
+          console.error("Failed to fetch data:", error);
         });
     };
 

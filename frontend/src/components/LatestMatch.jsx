@@ -9,7 +9,6 @@ function LatestMatch() {
   const [matches, setMatches] = useState([]);
 
   const navigate = useNavigate();
-
   const handleMatchesClick = () => {
     navigate("/matches", { state: { matches, teams } });
   };
@@ -17,10 +16,15 @@ function LatestMatch() {
   //fetching teams info data
   useEffect(() => {
     const fetchData = async () => {
-      await axios.get("http://localhost:5000/momcad").then((response) => {
-        const data = response.data;
-        setTeams(data);
-      });
+      await axios
+        .get("http://localhost:5000/momcad")
+        .then((response) => {
+          const data = response.data;
+          setTeams(data);
+        })
+        .catch((error) => {
+          console.error("Failed to fetch data:", error);
+        });
     };
 
     fetchData();
@@ -34,6 +38,9 @@ function LatestMatch() {
         .then((response) => {
           const data = response.data;
           setLatestMatch(data);
+        })
+        .catch((error) => {
+          console.error("Failed to fetch data:", error);
         });
     };
 
@@ -43,16 +50,21 @@ function LatestMatch() {
   //fetching for all matches that were played
   useEffect(() => {
     const fetchData = async () => {
-      await axios.get("http://localhost:5000/utakmice").then((response) => {
-        const data = response.data;
-        setMatches(data);
-      });
+      await axios
+        .get("http://localhost:5000/utakmice")
+        .then((response) => {
+          const data = response.data;
+          setMatches(data);
+        })
+        .catch((error) => {
+          console.error("Failed to fetch data:", error);
+        });
     };
 
     fetchData();
   }, []);
 
-  while (teams.length === 0) {
+  if (teams.length === 0) {
     return <div>Loading...</div>;
   }
 
@@ -80,10 +92,6 @@ function LatestMatch() {
     rang: latestMatch[0]?.rang,
     datum: latestMatch[0]?.datum,
   };
-
-  if (!latestMatchData.domacin || !latestMatchData.gost) {
-    return <div>Loading...</div>;
-  }
 
   //getting the logos for the teams
   const homeTeamLogo =

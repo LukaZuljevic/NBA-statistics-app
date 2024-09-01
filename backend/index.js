@@ -6,10 +6,6 @@ const omjerPobjeda22_23 = require("../frontend/src/queries/omjerPobjeda/22_23.js
 const omjerPobjeda23_24 = require("../frontend/src/queries/omjerPobjeda/23_24.jsx");
 const omjerPobjeda24_25 = require("../frontend/src/queries/omjerPobjeda/24_25.jsx");
 
-const brojPoena22_23 = require("../frontend/src/queries/brojPoena/22_23.jsx");
-const brojPoena23_24 = require("../frontend/src/queries/brojPoena/23_24.jsx");
-const brojPoena24_25 = require("../frontend/src/queries/brojPoena/24_25.jsx");
-
 const statistikaIgraca22_23 = require("../frontend/src/queries/statistikaIgraca/22_23.jsx");
 const statistikaIgraca23_24 = require("../frontend/src/queries/statistikaIgraca/23_24.jsx");
 const statistikaIgraca24_25 = require("../frontend/src/queries/statistikaIgraca/24_25.jsx");
@@ -77,41 +73,6 @@ app.get("/omjerPobjeda24/25", (req, res) => {
   });
 });
 
-app.get("/brojPoena22/23", (req, res) => {
-  client.query(brojPoena22_23, (err, results) => {
-    if (err) {
-      console.error("Error executing query", err.stack);
-      res.json("Something is wrong with the database");
-    } else {
-      console.log("Query results are :", results.rows);
-      res.json(results.rows);
-    }
-  });
-});
-
-app.get("/brojPoena23/24", (req, res) => {
-  client.query(brojPoena23_24, (err, results) => {
-    if (err) {
-      console.error("Error executing query", err.stack);
-      res.json("Something is wrong with the database");
-    } else {
-      console.log("Query results are :", results.rows);
-      res.json(results.rows);
-    }
-  });
-});
-
-app.get("/brojPoena24/25", (req, res) => {
-  client.query(brojPoena24_25, (err, results) => {
-    if (err) {
-      console.error("Error executing query", err.stack);
-      res.json("Something is wrong with the database");
-    } else {
-      console.log("Query results are :", results.rows);
-      res.json(results.rows);
-    }
-  });
-});
 
 app.get("/zadnjaUtakmica", (req, res) => {
   client.query(

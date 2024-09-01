@@ -2,10 +2,10 @@ import "./index.css";
 import { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./Layout";
-import AllPlayersStatistics from "./pages/AllPlayersStatistics";
+import AllPlayersStatisticsPage from "./pages/AllPlayersStatisticsPage";
 import TeamPage from "./pages/TeamPage";
 import PlayerPage from "./pages/PlayerPage";
-import AllMatches from "./pages/AllMatches";
+import AllMatchesPage from "./pages/AllMatchesPage";
 
 function App() {
   const [season, setSeason] = useState("22/23");
@@ -18,12 +18,12 @@ function App() {
           element={<Layout season={season} setSeason={setSeason} />}
         ></Route>
         <Route
-          path="/all-players-statistics"
-          element={<AllPlayersStatistics />}
+          path="/statistics"
+          element={<AllPlayersStatisticsPage />}
         ></Route>
         <Route path="/team/:teamId" element={<TeamPage />}></Route>
         <Route path="/player/:playerId" element={<PlayerPage />}></Route>
-        <Route path="/matches" element={<AllMatches />}></Route>
+        <Route path="/matches" element={<AllMatchesPage />}></Route>
       </Routes>
     </BrowserRouter>
   );

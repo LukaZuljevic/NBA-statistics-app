@@ -14,6 +14,8 @@ function PlayersStatistics({ season }) {
         .then((response) => {
           const data = response.data;
           setPlayerStatistics(data);
+        }).catch((error) => {
+          console.error("Failed to fetch data:", error);
         });
     };
 
@@ -45,7 +47,7 @@ function PlayersStatistics({ season }) {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate("/all-players-statistics");
+    navigate("/statistics");
   };
 
   return (

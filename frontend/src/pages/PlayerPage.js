@@ -8,8 +8,6 @@ function PlayerPage() {
 
   const playerPositions = ["PG", "SG", "SF", "PF", "C"];
 
-  console.log(player);
-
   return (
     <div className="player-page">
       <header>

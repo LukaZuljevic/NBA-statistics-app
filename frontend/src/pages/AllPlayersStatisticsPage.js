@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-function AllPlayersStatistics() {
+function AllPlayersStatisticsPage() {
   const [displayCount, setDisplayCount] = useState(30);
   const [sortStat, setSortStat] = useState("");
   const [filterTeam, setFilterTeam] = useState("");
@@ -16,6 +16,8 @@ function AllPlayersStatistics() {
         .then((response) => {
           const data = response.data;
           setPlayersStatistics(data);
+        }).catch((error) => {
+          console.error("Failed to fetch data:", error);
         });
     };
 
@@ -145,4 +147,4 @@ function AllPlayersStatistics() {
   );
 }
 
-export default AllPlayersStatistics;
+export default AllPlayersStatisticsPage;

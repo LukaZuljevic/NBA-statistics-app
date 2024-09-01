@@ -5,25 +5,27 @@ import { useNavigate } from "react-router-dom";
 
 function TeamTable({ season }) {
   const [winLossPercentage, setWinLossPercentage] = useState([]);
-  const [teamPoints, setTeamPoints] = useState([]);
   const [teams, setTeams] = useState([]);
   const [arenas, setArenas] = useState([]);
   const [coaches, setCoaches] = useState([]);
 
   const navigate = useNavigate();
-
   const handleTeamClick = (team) => {
-    navigate(`/team/${team.ime}`, { state: {team } });
+    navigate(`/team/${team.ime}`, { state: { team } });
   };
-
 
   //fetching coach data
   useEffect(() => {
     const fetchData = async () => {
-      await axios.get("http://localhost:5000/trener").then((response) => {
-        const data = response.data;
-        setCoaches(data);
-      });
+      await axios
+        .get("http://localhost:5000/trener")
+        .then((response) => {
+          const data = response.data;
+          setCoaches(data);
+        })
+        .catch((error) => {
+          console.error("Failed to fetch data:", error);
+        });
     };
 
     fetchData();
@@ -32,10 +34,15 @@ function TeamTable({ season }) {
   //fetching team arena data
   useEffect(() => {
     const fetchData = async () => {
-      await axios.get("http://localhost:5000/dvorane").then((response) => {
-        const data = response.data;
-        setArenas(data);
-      });
+      await axios
+        .get("http://localhost:5000/dvorane")
+        .then((response) => {
+          const data = response.data;
+          setArenas(data);
+        })
+        .catch((error) => {
+          console.error("Failed to fetch data:", error);
+        });
     };
 
     fetchData();
@@ -44,10 +51,15 @@ function TeamTable({ season }) {
   //fetching teams info data
   useEffect(() => {
     const fetchData = async () => {
-      await axios.get("http://localhost:5000/momcad").then((response) => {
-        const data = response.data;
-        setTeams(data);
-      });
+      await axios
+        .get("http://localhost:5000/momcad")
+        .then((response) => {
+          const data = response.data;
+          setTeams(data);
+        })
+        .catch((error) => {
+          console.error("Failed to fetch data:", error);
+        });
     };
 
     fetchData();
@@ -61,20 +73,9 @@ function TeamTable({ season }) {
         .then((response) => {
           const data = response.data;
           setWinLossPercentage(data);
-        });
-    };
-
-    fetchData();
-  }, [season]);
-
-  //fetching points data for each team
-  useEffect(() => {
-    const fetchData = async () => {
-      await axios
-        .get(`http://localhost:5000/brojPoena${season}`)
-        .then((response) => {
-          const data = response.data;
-          setTeamPoints(data);
+        })
+        .catch((error) => {
+          console.error("Failed to fetch data:", error);
         });
     };
 
@@ -82,28 +83,28 @@ function TeamTable({ season }) {
   }, [season]);
 
   //merging all the teams data into one object
-  const teamsWithStats = teams.map((team) => {
+  const teamsFullInfo = teams.map((team) => {
     const result = winLossPercentage.find((omjer) => omjer.team === team.ime);
-    const points = teamPoints.find((points) => points.team === team.ime);
     const arena = arenas.find((arena) => arena.id === team.id_stadion);
     const coach = coaches.find((coach) => coach.id_momcad === team.id);
 
     return {
       ...team,
-      coach: coach,
+      coach,
       arenaName: arena ? arena.ime : "Unknown",
       arenaCapacity: arena ? arena.broj_sjedala : "Unknown",
       wins: result ? result.wins : 0,
       losses: result ? result.losses : 0,
       draws: result ? result.draws : 0,
-      points: points ? points.total_points : 0,
     };
   });
 
   //sorting teams by points(2 points for win, 1 point for draw)
-  const sortedTeams = [...teamsWithStats]
+  const sortedTeams = [...teamsFullInfo]
     .map((team) => {
-      const teamPoints = parseInt(team.wins) * 2 + parseInt(team.draws);
+      const wins = parseInt(team.wins);
+      const draws = parseInt(team.draws);
+      const teamPoints = wins * 2 + draws;
       return { ...team, teamPoints };
     })
     .sort((a, b) => b.teamPoints - a.teamPoints);
