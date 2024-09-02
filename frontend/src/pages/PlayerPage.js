@@ -14,6 +14,9 @@ function PlayerPage() {
         <h1>
           {player.ime} {player.prezime}
         </h1>
+        <p className="home-link">
+          <a href="/">Home</a>
+        </p>
       </header>
 
       <div className="player-card">

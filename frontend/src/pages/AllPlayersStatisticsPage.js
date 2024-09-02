@@ -48,6 +48,9 @@ function AllPlayersStatisticsPage() {
     <div>
       <header>
         <h1>Players Statistics</h1>
+        <p className="home-link">
+          <a href="/">Home</a>
+        </p>
       </header>
 
       <div className="filter-sort-controls">

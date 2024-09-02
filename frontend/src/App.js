@@ -25,7 +25,7 @@ function App() {
         <Route path="/team/:teamId" element={<TeamPage />}></Route>
         <Route path="/player/:playerId" element={<PlayerPage />}></Route>
         <Route path="/matches" element={<AllMatchesPage />}></Route>
-        <Route path= "/match/:matchId" element={<SingleMatchPage />}></Route>
+        <Route path= "/matches/:matchId" element={<SingleMatchPage />}></Route>
       </Routes>
     </BrowserRouter>
   );

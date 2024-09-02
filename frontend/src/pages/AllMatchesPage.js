@@ -13,8 +13,8 @@ function AllMatchesPage() {
 
   const navigate = useNavigate();
   const handleMatchClick = (match) => {
-    navigate(`/match/${match.id}`, { state: { match } });
-  };  
+    navigate(`/matches/${match.id}`, { state: { match } });
+  };
 
   //fetching info for all matches that were played
   useEffect(() => {
@@ -102,6 +102,9 @@ function AllMatchesPage() {
     <div className="all-matches">
       <header>
         <h1>All Matches</h1>
+        <p className="home-link">
+          <a href="/">Home</a>
+        </p>
       </header>
       <div className="select-season">
         <div>
@@ -125,7 +128,11 @@ function AllMatchesPage() {
       </div>
       <ul className="list-of-matches">
         {filteredMatches.map((match, index) => (
-          <li onClick={() => handleMatchClick(match)} className="single-match" key={index}>
+          <li
+            onClick={() => handleMatchClick(match)}
+            className="single-match"
+            key={index}
+          >
             <div className="home-team">
               {
                 <img

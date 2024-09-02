@@ -42,6 +42,9 @@ function SingleMatchPage() {
     <div className="single-match-page">
       <header>
         <h1>Match Info</h1>
+        <p className="home-link">
+          <a href="/">Home</a>
+        </p>
       </header>
 
       <div className="match-info">
@@ -49,7 +52,7 @@ function SingleMatchPage() {
 
         <div className="match-card">
           <div className="single-match-team">
-            <p className="teams-name">{match.domaci.ime}</p>
+            <p className="teams-names">{match.domaci.ime}</p>
             <img
               src={
                 teamLogos[
@@ -58,10 +61,10 @@ function SingleMatchPage() {
               }
               alt={`${match.domaci.ime} logo`}
             />
-             <p className="player-header">
+            <p className="player-header">
               <div className="pos-and-name-header">
                 <span>Pos</span> <span>Name</span>
-              </div >
+              </div>
               <span>PTS</span>
               <span>ASS</span> <span>REB</span> <span>BLK</span>
               <span>STL</span> <span>TO</span>
@@ -70,7 +73,9 @@ function SingleMatchPage() {
               {homeTeamPlayers.map((player, index) => (
                 <li key={index}>
                   <div className="pos-and-name">
-                    <p className="pos">{playerPositions[player.position - 1]}</p>
+                    <p className="pos">
+                      {playerPositions[player.position - 1]}
+                    </p>
                     <p>
                       {player.name} {player.surname}
                     </p>
@@ -91,7 +96,7 @@ function SingleMatchPage() {
             </p>
           </div>
           <div className="single-match-team">
-            <p className="teams-name">{match.gosti.ime}</p>
+            <p className="teams-names">{match.gosti.ime}</p>
             <img
               src={
                 teamLogos[
@@ -103,7 +108,7 @@ function SingleMatchPage() {
             <p className="player-header">
               <div className="pos-and-name-header">
                 <span>Pos</span> <span>Name</span>
-              </div >
+              </div>
               <span>PTS</span>
               <span>ASS</span> <span>REB</span> <span>BLK</span>
               <span>STL</span> <span>TO</span>
@@ -112,7 +117,9 @@ function SingleMatchPage() {
               {awayTeamPlayers.map((player, index) => (
                 <li key={index}>
                   <div className="pos-and-name">
-                    <p className="pos">{playerPositions[player.position - 1]}</p>
+                    <p className="pos">
+                      {playerPositions[player.position - 1]}
+                    </p>
                     <p>
                       {player.name} {player.surname}
                     </p>

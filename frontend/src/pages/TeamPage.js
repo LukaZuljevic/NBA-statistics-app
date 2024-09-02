@@ -27,7 +27,8 @@ function TeamPage() {
         .then((response) => {
           const data = response.data;
           setPlayers(data);
-        }).catch((error) => {
+        })
+        .catch((error) => {
           console.error("Failed to fetch data:", error);
         });
     };
@@ -39,6 +40,9 @@ function TeamPage() {
     <div className="team-page">
       <header className="team-header">
         <h1>Team section</h1>
+        <p className="home-link">
+          <a href="/">Home</a>
+        </p>
       </header>
 
       <div
