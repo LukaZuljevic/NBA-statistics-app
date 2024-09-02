@@ -8,6 +8,7 @@
 @import "./styles/playerPage.css";
 @import "./styles/footer.css";
 @import "./styles/allMatchesPage.css";
+@import "./styles/singleMatchPage.css";
 
 * {
   margin: 0;

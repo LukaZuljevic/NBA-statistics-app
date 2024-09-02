@@ -73,7 +73,6 @@ app.get("/omjerPobjeda24/25", (req, res) => {
   });
 });
 
-
 app.get("/zadnjaUtakmica", (req, res) => {
   client.query(
     `SELECT *
@@ -207,6 +206,39 @@ app.get("/utakmiceInfo", (req, res) => {
       res.json(results.rows);
     }
   });
+});
+
+app.get("/statistikaUtakmice", (req, res) => {
+  client.query(
+    `SELECT 
+    UIS.id_Utakmica,
+    I.Ime AS name,
+    I.Prezime AS surname,
+    I.Pozicija AS position,
+    I.id_Momcad AS team_id,
+    UIS.Points,
+    UIS.Rebounds,
+    UIS.Assists,
+    UIS.Steals,
+    UIS.Blocks,
+    UIS.Turnovers,
+    UIS.Fouls
+FROM 
+    UtakmicaIgracStatistika UIS
+JOIN 
+    Igrac I ON UIS.id_Igrac = I.id
+WHERE 
+    UIS.id_Utakmica = ${req.query.id};`,
+    (err, results) => {
+      if (err) {
+        console.error("Error executing query", err.stack);
+        res.json("Something is wrong with the database");
+      } else {
+        console.log("Query results are :", results.rows);
+        res.json(results.rows);
+      }
+    }
+  );
 });
 
 app.listen(5000, () => {

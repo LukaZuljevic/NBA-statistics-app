@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import teamLogos from "../teamLogos";
 
@@ -10,6 +10,11 @@ function AllMatchesPage() {
 
   const location = useLocation();
   const { matches, teams } = location.state;
+
+  const navigate = useNavigate();
+  const handleMatchClick = (match) => {
+    navigate(`/match/${match.id}`, { state: { match } });
+  };  
 
   //fetching info for all matches that were played
   useEffect(() => {
@@ -120,7 +125,7 @@ function AllMatchesPage() {
       </div>
       <ul className="list-of-matches">
         {filteredMatches.map((match, index) => (
-          <div className="single-match" key={index}>
+          <li onClick={() => handleMatchClick(match)} className="single-match" key={index}>
             <div className="home-team">
               {
                 <img
@@ -154,7 +159,7 @@ function AllMatchesPage() {
               }
               <h5>{match.gosti.ime}</h5>
             </div>
-          </div>
+          </li>
         ))}
       </ul>
     </div>

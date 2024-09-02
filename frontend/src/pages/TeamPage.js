@@ -1,8 +1,8 @@
 import { useLocation, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 import teamLogos from "../teamLogos";
 import coachImages from "../coachImages";
 import staduimSeats from "../assets/stadiumSeats.png";
-import { useEffect, useState } from "react";
 import axios from "axios";
 
 function TeamPage() {
