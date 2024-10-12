@@ -1,6 +1,6 @@
 # NBA-statistics-app
 
-This was my biggest project so far. The goal of this project was built to explore and learn React framework. The app provides sport scores, match statistics, and other relevant NBA data offering a user-friendly experience. App also uses data from my DB that was made in postgreSQL.
+This was my biggest project so far. The goal of this project was to explore and learn React framework. The app provides sport scores, match statistics, and other relevant NBA data offering a user-friendly experience. App also uses data from my DB that was made in postgreSQL.
 
 ## Technologies Used
 
