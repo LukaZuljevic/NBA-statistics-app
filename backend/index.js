@@ -1,15 +1,9 @@
+require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const app = express();
-
-const omjerPobjeda22_23 = require("../frontend/src/queries/omjerPobjeda/22_23.jsx");
-const omjerPobjeda23_24 = require("../frontend/src/queries/omjerPobjeda/23_24.jsx");
-const omjerPobjeda24_25 = require("../frontend/src/queries/omjerPobjeda/24_25.jsx");
-
-const statistikaIgraca22_23 = require("../frontend/src/queries/statistikaIgraca/22_23.jsx");
-const statistikaIgraca23_24 = require("../frontend/src/queries/statistikaIgraca/23_24.jsx");
-const statistikaIgraca24_25 = require("../frontend/src/queries/statistikaIgraca/24_25.jsx");
-const statistikaIgracaAll = require("../frontend/src/queries/statistikaIgraca/All.jsx");
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 const { Client } = require("pg");
 
@@ -24,6 +18,97 @@ const client = new Client({
 client.connect().then(() => console.log("Connected to database"));
 
 app.use(cors());
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// Register and hashing password
+const saltRounds = 10;
+
+app.post("/register", (req, res) => {
+  const checkEmailSql = "SELECT * FROM users WHERE email = $1";
+
+  client.query(checkEmailSql, [req.body.email], (err, results) => {
+    if (err) {
+      return res.json("Something is wrong with the database");
+    }
+
+    // Checking if email already exists
+    if (results.rows.length > 0) {
+      return res.json("Email already exists");
+    }
+
+    // Checking if passwords match
+    if (req.body.password !== req.body.password2) {
+      return res.json("Passwords do not match");
+    }
+
+    // If email does not exist, proceeding with registration
+    const sql =
+      "INSERT INTO users (username, password, email) VALUES ($1, $2, $3)";
+
+    bcrypt.hash(req.body.password.toString(), saltRounds, (err, hash) => {
+      if (err) {
+        return res.json("Error hashing password");
+      }
+
+      const values = [req.body.username, hash, req.body.email];
+      client.query(sql, values, (err, results) => {
+        if (err) {
+          return res.json("Something is wrong with the database");
+        }
+
+        res.json("Successfully registered");
+      });
+    });
+  });
+});
+
+//Login and comparing passwords
+app.post("/login", (req, res) => {
+  const sql = "SELECT * FROM users WHERE email = $1";
+
+  client.query(sql, [req.body.email], (err, results) => {
+    if (err) {
+      return res.json("Something is wrong with the database");
+    }
+
+    // Checking if user exists
+    if (results.rows.length === 0) {
+      return res.json("User not found");
+    }
+
+    // Comparing passwords and creating access token if passwords match
+    bcrypt.compare(
+      req.body.password.toString(),
+      results.rows[0].password,
+      (err, result) => {
+        if (err) {
+          return res.json("Error comparing passwords");
+        }
+
+        if (result) {
+          const accessToken = jwt.sign(
+            { email: results.rows[0].email },
+            process.env.ACCESS_TOKEN_SECRET
+          );
+          res.json({ accessToken: accessToken });
+        } else {
+          return res.json("Incorrect password");
+        }
+      }
+    );
+  });
+});
+
+const omjerPobjeda22_23 = require("../frontend/src/queries/omjerPobjeda/22_23.jsx");
+const omjerPobjeda23_24 = require("../frontend/src/queries/omjerPobjeda/23_24.jsx");
+const omjerPobjeda24_25 = require("../frontend/src/queries/omjerPobjeda/24_25.jsx");
+
+const statistikaIgraca22_23 = require("../frontend/src/queries/statistikaIgraca/22_23.jsx");
+const statistikaIgraca23_24 = require("../frontend/src/queries/statistikaIgraca/23_24.jsx");
+const statistikaIgraca24_25 = require("../frontend/src/queries/statistikaIgraca/24_25.jsx");
+const statistikaIgracaAll = require("../frontend/src/queries/statistikaIgraca/All.jsx");
 
 app.get("/momcad", (req, res) => {
   client.query("SELECT * FROM momcad", (err, results) => {

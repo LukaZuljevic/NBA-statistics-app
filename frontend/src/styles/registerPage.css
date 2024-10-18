@@ -1,0 +1,85 @@
+.register-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+  background-image: url("C:\Projekti\NBA-statistics-app\frontend\src\assets\slika.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.register-div {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  min-height: 300px;
+  min-width: 320px;
+  text-align: center;
+  background-color: #fff;
+}
+
+.register-div h2 {
+  font-size: 2rem;
+  margin: 0;
+  padding: 15px;
+  background-color: #2a5a6d;
+  color: white;
+  border-bottom: 2px solid #ccc;
+  border-radius: 8px 8px 0 0;
+}
+
+.register-form {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.register-form label {
+  font-weight: bold;
+  align-self: flex-start;
+}
+
+.register-form input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+  transition: border-color 0.3s;
+}
+
+.register-form input:focus {
+  border-color: #2a5a6d;
+  outline: none;
+}
+
+.register-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #2a5a6d;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.register-button:hover {
+  background-color: #2a5a6dbe;
+}
+
+.login-link {
+  color: #039aff;
+  text-decoration: none;
+  margin-bottom: 15px;
+}
+
+.login-link:hover {
+  text-decoration: underline;
+}

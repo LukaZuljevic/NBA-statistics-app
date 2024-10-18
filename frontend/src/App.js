@@ -7,6 +7,9 @@ import TeamPage from "./pages/TeamPage";
 import PlayerPage from "./pages/PlayerPage";
 import AllMatchesPage from "./pages/AllMatchesPage";
 import SingleMatchPage from "./pages/SingleMatchPage";
+import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/RegisterPage";
+import ProtectedRoute from "./ProtectedRoute";
 
 function App() {
   const [season, setSeason] = useState("22/23");
@@ -14,21 +17,60 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+
         <Route
           path="/"
-          element={<Layout season={season} setSeason={setSeason} />}
-        ></Route>
+          element={
+            <ProtectedRoute>
+              <Layout season={season} setSeason={setSeason} />
+            </ProtectedRoute>
+          }
+        />
+
         <Route
           path="/statistics"
-          element={<AllPlayersStatisticsPage />}
-        ></Route>
-        <Route path="/team/:teamId" element={<TeamPage />}></Route>
-        <Route path="/player/:playerId" element={<PlayerPage />}></Route>
-        <Route path="/matches" element={<AllMatchesPage />}></Route>
-        <Route path= "/matches/:matchId" element={<SingleMatchPage />}></Route>
+          element={
+            <ProtectedRoute>
+              <AllPlayersStatisticsPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/team/:teamId"
+          element={
+            <ProtectedRoute>
+              <TeamPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/player/:playerId"
+          element={
+            <ProtectedRoute>
+              <PlayerPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/matches"
+          element={
+            <ProtectedRoute>
+              <AllMatchesPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/matches/:matchId"
+          element={
+            <ProtectedRoute>
+              <SingleMatchPage />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );
 }
-
 export default App;

@@ -9,6 +9,8 @@
 @import "./styles/footer.css";
 @import "./styles/allMatchesPage.css";
 @import "./styles/singleMatchPage.css";
+@import "./styles/loginPage.css";
+@import "./styles/registerPage.css";
 
 * {
   margin: 0;
