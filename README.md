@@ -1,5 +1,5 @@
 # NBA-statistics-app
-This was my biggest project so far. The goal of this project was to explore and learn React framework and learn about user authentication. App is used to keep tracks of detailed match statistics including goals, fouls, and more. You can find info about NBA teams and players, aswell as their statistics. 
+This was my biggest project so far. The goal of this project was to explore and learn React framework and learn about user authorization. App is used to keep tracks of detailed match statistics including goals, fouls, and more. You can find info about NBA teams and players, aswell as their statistics. 
 
 ## Technologies Used
 
